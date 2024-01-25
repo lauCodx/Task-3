@@ -19,8 +19,8 @@ function Cart() {
     // calculates the total price of the items in the cart and empty the cart
     this.check = function() {
         let total = 0;
-        for (let item of this.items) {
-            total += item.price;
+        for (let x of this.items) {
+            total += x.price;
         }
         this.items = []; // empty the cart after checking it.
         return total;
