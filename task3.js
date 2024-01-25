@@ -1,38 +1,60 @@
-// A function that represents a product with a name and price
-function Product(name, price) { 
-    this.name = name;
-    this.price = price;
+
+
+
+const Store = function() {
+    this.products = []
+
+    this.addProduct = function (id, name, price, quantity){
+
+        // this.item = new item(id, name, price, quantity)
+
+        this.products.push ({id, name, price, quantity})
+    }
+
+    // To display products
+    this.displayProducts = function(){
+        return this.products
+    }
+
+    // To check if product exist
+    this.checkIfProductExist = function (id) {
+       this.findIndex = this.products.findIndex((item) => item.id === id);
+       if (this.findIndex === -1){
+        return 'Product does not exist';
+       }else {
+        return 'Product exist!';
+       }
+
+    }
+
+    this.addPriceOfItems = function (){
+       let total = 0;
+
+       this.products.forEach((product) => total += product.price);
+       return total;
+
+    }
+
+    
+        
+// Check on the net if findIndex is a builtIn function.
+    
+
 }
 
-// A function that represents a shopping cart. It has methods to addItem (add a product to the cart) and checkout (calculate the total price of the items in the cart and empty the cart).
-function Cart() {
-    this.items = []; //instance of cart object
 
-    this.addItem = function(item) {
-        this.items.push(item); // to add a product to the cart
-    }
 
-    this.allProducts= function (){
-        return this.items
-    }
+let store = new Store();
 
-    // calculates the total price of the items in the cart and empty the cart
-    this.check = function() {
-        let total = 0;
-        for (let x of this.items) {
-            total += x.price;
-        }
-        this.items = []; // empty the cart after checking it.
-        return total;
-    }
-}
+//Add products
+store.addProduct(1, 'Books', 100, 3)
+store.addProduct(2, 'Car', 1340, 5)
+store.addProduct(4, 'Hook', 200, 67)
+store.addProduct(5, 'Hook', 200, 67)
+store.addProduct(6, 'Hook', 200, 67)
 
-//  we create a new Cart, add some Products to it, and then call check function to calculate the total price.
-let cart = new Cart();
-cart.addItem(new Product("Book", 200));
-cart.addItem(new Product("Cloth", 75));
-cart.addItem(new Product("shoes", 150));
 
-console.log(cart.allProducts())
-console.log(`Total: $${cart.check()}`);
-
+console.log(store.displayProducts())
+console.log()
+console.log (store.checkIfProductExist(10))
+console.log(store.addPriceOfItems())
