@@ -37,7 +37,7 @@ const Store = function() {
 
     
         
-// Check on the net if findIndex is a builtIn function.
+
     
 
 }
